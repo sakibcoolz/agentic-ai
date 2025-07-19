@@ -92,16 +92,16 @@ go mod tidy
 
 ### 3. **Run the Resilient Agent**
 ```bash
-go run main.go
+go run *.go
 ```
 
 ### 4. **Test Fault Tolerance**
 ```bash
-# Run fault injection demo
-go run demo/demo.go
-
-# Test different scenarios
-go run demo/scenarios.go
+# Interactive mode - type commands
+You: demo          # Run comprehensive demo
+You: test timeout  # Test specific scenarios
+You: health        # Check system health
+You: stats         # View performance metrics
 ```
 
 ## 🔧 Core Components

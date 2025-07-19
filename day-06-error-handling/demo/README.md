@@ -14,7 +14,20 @@ cp .env.example .env
 go run *.go
 ```
 
-### 3. **Test Fault Scenarios**
+### 3. **Run Comprehensive Demo**
+
+#### **Automatic Demonstration**
+```
+You: demo
+```
+This will run a complete fault tolerance demonstration showing:
+- Basic functionality test
+- Retry logic with exponential backoff
+- Circuit breaker protection
+- Rate limiting enforcement
+- System recovery validation
+
+### 4. **Interactive Testing**
 
 #### **Basic Chat Test**
 ```
@@ -31,23 +44,11 @@ You: health
 You: stats
 ```
 
-#### **Test Timeout Handling**
+#### **Test Individual Fault Scenarios**
 ```
 You: test timeout
-```
-
-#### **Test Rate Limiting**
-```
 You: test ratelimit
-```
-
-#### **Test Server Error Recovery**
-```
 You: test server_error
-```
-
-#### **Test Network Issues**
-```
 You: test network
 ```
 

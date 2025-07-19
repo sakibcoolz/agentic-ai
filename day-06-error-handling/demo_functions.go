@@ -3,33 +3,11 @@ package main
 import (
 	"context"
 	"fmt"
-	"log"
-	"os"
 	"time"
-
-	"github.com/joho/godotenv"
 )
 
-// Demonstration of the resilient AI agent with fault injection
-
-func main() {
-	// Load environment variables
-	if err := godotenv.Load("../.env"); err != nil {
-		log.Printf("Warning: .env file not found: %v", err)
-	}
-
-	apiKey := os.Getenv("OPENAI_API_KEY")
-	if apiKey == "" {
-		log.Fatal("OPENAI_API_KEY environment variable is required")
-	}
-
-	// Create resilient agent
-	config := DefaultReliabilityConfig()
-	agent, err := NewResilientAgent(apiKey, config)
-	if err != nil {
-		log.Fatalf("Failed to create resilient agent: %v", err)
-	}
-
+// runDemo demonstrates all the reliability features using the provided agent
+func runDemo(agent *ResilientAgent) {
 	fmt.Println("🧪 Resilient AI Agent Demonstration")
 	fmt.Println("===================================")
 	fmt.Println()
@@ -195,11 +173,4 @@ func demonstrateRecovery(agent *ResilientAgent) {
 		metrics.ErrorRate*100)
 
 	fmt.Println()
-}
-
-func min(a, b int) int {
-	if a < b {
-		return a
-	}
-	return b
 }

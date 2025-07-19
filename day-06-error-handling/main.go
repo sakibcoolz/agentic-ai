@@ -45,6 +45,7 @@ func main() {
 	fmt.Println("• 'health' - Check component health status")
 	fmt.Println("• 'config' - Show current reliability configuration")
 	fmt.Println("• 'test [scenario]' - Run fault injection tests")
+	fmt.Println("• 'demo' - Run comprehensive reliability demonstration")
 	fmt.Println("• 'reset' - Reset all circuit breakers and metrics")
 	fmt.Println("• 'quit' - Exit the program")
 	fmt.Println()
@@ -83,6 +84,11 @@ func main() {
 		case strings.HasPrefix(input, "test "):
 			scenario := strings.TrimPrefix(input, "test ")
 			runFaultInjectionTest(agent, scenario)
+			continue
+
+		case input == "demo":
+			fmt.Println("🚀 Starting comprehensive reliability demonstration...")
+			runDemo(agent)
 			continue
 
 		case input == "reset":

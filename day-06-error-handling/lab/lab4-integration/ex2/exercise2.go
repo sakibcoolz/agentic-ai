@@ -1,4 +1,4 @@
-package lab2
+package main
 
 import (
 	"fmt"
@@ -251,7 +251,7 @@ func testBasicCircuitBreaker() {
 
 	fmt.Println("Testing with failing operation (should open circuit):")
 	for i := 0; i < 5; i++ {
-		err := cb.Call(AlwaysFailOperation)
+		err := cb.Call(AlwaysFailOperationCB)
 		fmt.Printf("Call %d: %v\n", i+1, err)
 		time.Sleep(100 * time.Millisecond)
 	}
@@ -261,7 +261,7 @@ func testBasicCircuitBreaker() {
 
 	fmt.Println("Testing after timeout (should allow calls):")
 	for i := 0; i < 3; i++ {
-		err := cb.Call(AlwaysSucceedOperation)
+		err := cb.Call(AlwaysSucceedOperationCB)
 		fmt.Printf("Call %d: %v\n", i+1, err)
 		time.Sleep(100 * time.Millisecond)
 	}
@@ -275,7 +275,7 @@ func testAdvancedCircuitBreaker() {
 
 	fmt.Println("Phase 1: Testing with failing operation:")
 	for i := 0; i < 5; i++ {
-		err := cb.Call(AlwaysFailOperation)
+		err := cb.Call(AlwaysFailOperationCB)
 		fmt.Printf("Call %d: %v\n", i+1, err)
 		time.Sleep(100 * time.Millisecond)
 	}
@@ -300,14 +300,14 @@ func testMetricsCircuitBreaker() {
 
 	fmt.Println("Phase 1: Mixed success/failure pattern:")
 	operations := []func() error{
-		AlwaysSucceedOperation,
-		AlwaysFailOperation,
-		AlwaysSucceedOperation,
-		AlwaysFailOperation,
-		AlwaysFailOperation,
-		AlwaysFailOperation,
-		AlwaysFailOperation,    // This should open the circuit
-		AlwaysSucceedOperation, // This should be rejected
+		AlwaysSucceedOperationCB,
+		AlwaysFailOperationCB,
+		AlwaysSucceedOperationCB,
+		AlwaysFailOperationCB,
+		AlwaysFailOperationCB,
+		AlwaysFailOperationCB,
+		AlwaysFailOperationCB,    // This should open the circuit
+		AlwaysSucceedOperationCB, // This should be rejected
 	}
 
 	for i, op := range operations {
@@ -326,7 +326,7 @@ func testMetricsCircuitBreaker() {
 	time.Sleep(1200 * time.Millisecond)
 
 	for i := 0; i < 5; i++ {
-		err := cb.Call(AlwaysSucceedOperation)
+		err := cb.Call(AlwaysSucceedOperationCB)
 		fmt.Printf("Recovery call %d: %v\n", i+1, err)
 		time.Sleep(100 * time.Millisecond)
 	}
