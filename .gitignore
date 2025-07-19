@@ -1,0 +1,29 @@
+# Agentic AI Learning Repository
+
+.env
+*.log
+/tmp/
+/vendor/
+/dist/
+/build/
+
+# IDE files
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Test coverage
+coverage.out
+coverage.html
+
+# Binary files
+/bin/
+agentic-ai
+
+# Docker
+docker-compose.override.yml
